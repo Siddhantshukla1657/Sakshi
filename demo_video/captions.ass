@@ -1,0 +1,161 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Caption,Segoe UI,44,&H00FFFFFF,&H00FFFFFF,&H140D0D0D,&H140D0D0D,-1,0,0,0,100,100,0,0,3,14,0,2,160,160,34,1
+Style: Chip,Segoe UI,30,&H000D0D0D,&H000D0D0D,&H0097DC3D,&H0097DC3D,-1,0,0,0,100,100,1,0,3,11,0,9,40,90,92,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.58,0:00:03.31,Caption,,0,0,0,,{\fad(120,120)}Every day, payment apps like Paytm handle
+Dialogue: 0,0:00:03.31,0:00:05.30,Caption,,0,0,0,,{\fad(120,120)}millions of support requests.
+Dialogue: 0,0:00:05.30,0:00:06.85,Caption,,0,0,0,,{\fad(120,120)}A UPI payment that failed,
+Dialogue: 0,0:00:06.85,0:00:08.49,Caption,,0,0,0,,{\fad(120,120)}but still left the bank.
+Dialogue: 0,0:00:08.49,0:00:10.16,Caption,,0,0,0,,{\fad(120,120)}A refund for a broken order.
+Dialogue: 0,0:00:10.16,0:00:12.54,Caption,,0,0,0,,{\fad(120,120)}A merchant settlement that came up short.
+Dialogue: 0,0:00:12.54,0:00:14.11,Caption,,0,0,0,,{\fad(120,120)}Chatbots can only talk,
+Dialogue: 0,0:00:14.11,0:00:15.50,Caption,,0,0,0,,{\fad(120,120)}so tickets pile up.
+Dialogue: 0,0:00:15.50,0:00:17.89,Caption,,0,0,0,,{\fad(120,120)}But an AI agent that can move money
+Dialogue: 0,0:00:17.89,0:00:19.74,Caption,,0,0,0,,{\fad(120,120)}can also be talked into moving it.
+Dialogue: 0,0:00:20.63,0:00:23.12,Caption,,0,0,0,,{\fad(120,120)}Meet Sakshi, Hindi for witness:
+Dialogue: 0,0:00:23.12,0:00:25.56,Caption,,0,0,0,,{\fad(120,120)}a support agent designed to be audited,
+Dialogue: 0,0:00:25.56,0:00:26.88,Caption,,0,0,0,,{\fad(120,120)}not just smart.
+Dialogue: 0,0:00:26.88,0:00:29.03,Caption,,0,0,0,,{\fad(120,120)}The AI proposes an action.
+Dialogue: 0,0:00:29.03,0:00:30.34,Caption,,0,0,0,,{\fad(120,120)}A policy engine,
+Dialogue: 0,0:00:30.34,0:00:31.69,Caption,,0,0,0,,{\fad(120,120)}written in plain code,
+Dialogue: 0,0:00:31.69,0:00:35.00,Caption,,0,0,0,,{\fad(120,120)}verifies it. Only then does the action run,
+Dialogue: 0,0:00:35.00,0:00:36.67,Caption,,0,0,0,,{\fad(120,120)}and every step is sealed
+Dialogue: 0,0:00:36.67,0:00:38.58,Caption,,0,0,0,,{\fad(120,120)}in a hash-chained audit ledger.
+Dialogue: 0,0:00:39.48,0:00:41.30,Caption,,0,0,0,,{\fad(120,120)}Here is the live stage.
+Dialogue: 0,0:00:41.30,0:00:43.80,Caption,,0,0,0,,{\fad(120,120)}Riya's tote bag arrived broken,
+Dialogue: 0,0:00:43.80,0:00:46.81,Caption,,0,0,0,,{\fad(120,120)}so she asks for a 499 rupee refund.
+Dialogue: 0,0:00:46.81,0:00:47.53,Caption,,0,0,0,,{\fad(120,120)}On the right,
+Dialogue: 0,0:00:47.53,0:00:49.40,Caption,,0,0,0,,{\fad(120,120)}supervisors watch the agent's
+Dialogue: 0,0:00:49.40,0:00:50.65,Caption,,0,0,0,,{\fad(120,120)}reasoning stream in.
+Dialogue: 0,0:00:50.65,0:00:51.51,Caption,,0,0,0,,{\fad(120,120)}It checks the order,
+Dialogue: 0,0:00:51.51,0:00:53.18,Caption,,0,0,0,,{\fad(120,120)}proposes a refund,
+Dialogue: 0,0:00:53.18,0:00:54.79,Caption,,0,0,0,,{\fad(120,120)}and the policy engine allows it,
+Dialogue: 0,0:00:54.79,0:00:56.69,Caption,,0,0,0,,{\fad(120,120)}because 499 is under the
+Dialogue: 0,0:00:56.69,0:00:58.89,Caption,,0,0,0,,{\fad(120,120)}500 rupee autonomy limit.
+Dialogue: 0,0:00:58.89,0:01:00.12,Caption,,0,0,0,,{\fad(120,120)}Riya gets a receipt,
+Dialogue: 0,0:01:00.12,0:01:02.02,Caption,,0,0,0,,{\fad(120,120)}with a ten-minute undo window.
+Dialogue: 1,0:00:39.12,0:01:02.53,Chip,,0,0,0,,{\fad(250,200)}1 · Small refund, resolved by the agent
+Dialogue: 0,0:01:02.91,0:01:04.25,Caption,,0,0,0,,{\fad(120,120)}Anyone can ask why.
+Dialogue: 0,0:01:04.25,0:01:05.57,Caption,,0,0,0,,{\fad(120,120)}The answer is built only
+Dialogue: 0,0:01:05.57,0:01:06.79,Caption,,0,0,0,,{\fad(120,120)}from the audit record:
+Dialogue: 0,0:01:06.79,0:01:08.04,Caption,,0,0,0,,{\fad(120,120)}the rules it cited,
+Dialogue: 0,0:01:08.04,0:01:09.45,Caption,,0,0,0,,{\fad(120,120)}its confidence score,
+Dialogue: 0,0:01:09.45,0:01:12.88,Caption,,0,0,0,,{\fad(120,120)}and the block's SHA-256 hash,
+Dialogue: 0,0:01:12.88,0:01:14.94,Caption,,0,0,0,,{\fad(120,120)}linked to the hash of the block before it.
+Dialogue: 1,0:01:02.58,0:01:15.45,Chip,,0,0,0,,{\fad(250,200)}Why did the agent do that?
+Dialogue: 0,0:01:15.84,0:01:18.32,Caption,,0,0,0,,{\fad(120,120)}Next, Riya writes in Hinglish.
+Dialogue: 0,0:01:18.32,0:01:20.10,Caption,,0,0,0,,{\fad(120,120)}Her UPI payment failed,
+Dialogue: 0,0:01:20.10,0:01:23.44,Caption,,0,0,0,,{\fad(120,120)}but 499 rupees still left her bank.
+Dialogue: 0,0:01:23.44,0:01:25.21,Caption,,0,0,0,,{\fad(120,120)}Sakshi replies in Hinglish,
+Dialogue: 0,0:01:25.21,0:01:27.11,Caption,,0,0,0,,{\fad(120,120)}sees the payment is inside
+Dialogue: 0,0:01:27.11,0:01:29.82,Caption,,0,0,0,,{\fad(120,120)}the 48-hour auto-reversal window,
+Dialogue: 0,0:01:29.82,0:01:32.17,Caption,,0,0,0,,{\fad(120,120)}and shows her exactly where the money is.
+Dialogue: 1,0:01:15.50,0:01:32.66,Chip,,0,0,0,,{\fad(250,200)}2 · Failed UPI payment, in Hinglish
+Dialogue: 0,0:01:33.06,0:01:34.67,Caption,,0,0,0,,{\fad(120,120)}Now a bigger ask:
+Dialogue: 0,0:01:34.67,0:01:38.58,Caption,,0,0,0,,{\fad(120,120)}earbuds worth 1,499 rupees.
+Dialogue: 0,0:01:38.58,0:01:40.30,Caption,,0,0,0,,{\fad(120,120)}That is above the agent's limit,
+Dialogue: 0,0:01:40.30,0:01:41.50,Caption,,0,0,0,,{\fad(120,120)}and over the daily cap
+Dialogue: 0,0:01:41.50,0:01:44.00,Caption,,0,0,0,,{\fad(120,120)}of 1,000 rupees per customer.
+Dialogue: 0,0:01:44.00,0:01:45.86,Caption,,0,0,0,,{\fad(120,120)}So the agent cannot pay out.
+Dialogue: 0,0:01:45.86,0:01:48.16,Caption,,0,0,0,,{\fad(120,120)}It sends the case to a supervisor,
+Dialogue: 0,0:01:48.16,0:01:49.38,Caption,,0,0,0,,{\fad(120,120)}and tells Riya she will
+Dialogue: 0,0:01:49.38,0:01:51.31,Caption,,0,0,0,,{\fad(120,120)}not have to repeat herself.
+Dialogue: 1,0:01:32.71,0:01:51.82,Chip,,0,0,0,,{\fad(250,200)}3 · Above the limit: a supervisor decides
+Dialogue: 0,0:01:52.22,0:01:54.59,Caption,,0,0,0,,{\fad(120,120)}The supervisor gets a handoff packet:
+Dialogue: 0,0:01:54.59,0:01:56.09,Caption,,0,0,0,,{\fad(120,120)}the order, the amount,
+Dialogue: 0,0:01:56.09,0:01:57.79,Caption,,0,0,0,,{\fad(120,120)}today's refund total,
+Dialogue: 0,0:01:57.79,0:01:58.83,Caption,,0,0,0,,{\fad(120,120)}a trust score,
+Dialogue: 0,0:01:58.83,0:02:00.45,Caption,,0,0,0,,{\fad(120,120)}and a suggested next step.
+Dialogue: 0,0:02:00.45,0:02:01.69,Caption,,0,0,0,,{\fad(120,120)}One click approves it.
+Dialogue: 0,0:02:01.69,0:02:03.22,Caption,,0,0,0,,{\fad(120,120)}The refund runs,
+Dialogue: 0,0:02:03.22,0:02:04.58,Caption,,0,0,0,,{\fad(120,120)}and the approval is recorded
+Dialogue: 0,0:02:04.58,0:02:06.14,Caption,,0,0,0,,{\fad(120,120)}under the supervisor's name.
+Dialogue: 1,0:01:51.87,0:02:06.64,Chip,,0,0,0,,{\fad(250,200)}Supervisor approval cockpit
+Dialogue: 0,0:02:07.02,0:02:08.11,Caption,,0,0,0,,{\fad(120,120)}Now an attack.
+Dialogue: 0,0:02:08.11,0:02:10.34,Caption,,0,0,0,,{\fad(120,120)}Someone claims to be Paytm's CEO,
+Dialogue: 0,0:02:10.34,0:02:12.99,Caption,,0,0,0,,{\fad(120,120)}and orders a 6,000 rupee refund.
+Dialogue: 0,0:02:12.99,0:02:14.86,Caption,,0,0,0,,{\fad(120,120)}The language model can be fooled,
+Dialogue: 0,0:02:14.86,0:02:17.12,Caption,,0,0,0,,{\fad(120,120)}but the policy engine cannot.
+Dialogue: 0,0:02:17.12,0:02:20.50,Caption,,0,0,0,,{\fad(120,120)}6,000 is above the 5,000 rupee ceiling,
+Dialogue: 0,0:02:20.50,0:02:22.35,Caption,,0,0,0,,{\fad(120,120)}so the refund is blocked,
+Dialogue: 0,0:02:22.35,0:02:24.38,Caption,,0,0,0,,{\fad(120,120)}and handed to a human specialist.
+Dialogue: 1,0:02:06.69,0:02:24.89,Chip,,0,0,0,,{\fad(250,200)}4 · A prompt-injection attack
+Dialogue: 0,0:02:25.28,0:02:25.98,Caption,,0,0,0,,{\fad(120,120)}Attack Mode has a
+Dialogue: 0,0:02:25.98,0:02:28.14,Caption,,0,0,0,,{\fad(120,120)}library of scripted attacks:
+Dialogue: 0,0:02:28.14,0:02:30.39,Caption,,0,0,0,,{\fad(120,120)}prompt injection, fake authority,
+Dialogue: 0,0:02:30.39,0:02:32.44,Caption,,0,0,0,,{\fad(120,120)}sob stories, jailbreaks,
+Dialogue: 0,0:02:32.44,0:02:34.85,Caption,,0,0,0,,{\fad(120,120)}forged tokens and limit smuggling.
+Dialogue: 0,0:02:34.85,0:02:36.44,Caption,,0,0,0,,{\fad(120,120)}Each one hits the same wall.
+Dialogue: 0,0:02:36.44,0:02:38.30,Caption,,0,0,0,,{\fad(120,120)}No prompt can talk its way around code.
+Dialogue: 1,0:02:24.94,0:02:38.79,Chip,,0,0,0,,{\fad(250,200)}Attack Mode
+Dialogue: 0,0:02:39.18,0:02:42.22,Caption,,0,0,0,,{\fad(120,120)}Every proposal, verdict and approval lands
+Dialogue: 0,0:02:42.22,0:02:43.30,Caption,,0,0,0,,{\fad(120,120)}in the audit chain.
+Dialogue: 0,0:02:43.30,0:02:46.11,Caption,,0,0,0,,{\fad(120,120)}Verify it, and every hash checks out.
+Dialogue: 0,0:02:46.11,0:02:48.27,Caption,,0,0,0,,{\fad(120,120)}Now we tamper with the latest record,
+Dialogue: 0,0:02:48.27,0:02:50.43,Caption,,0,0,0,,{\fad(120,120)}directly in the database.
+Dialogue: 0,0:02:50.43,0:02:51.86,Caption,,0,0,0,,{\fad(120,120)}The check fails at once,
+Dialogue: 0,0:02:51.86,0:02:53.77,Caption,,0,0,0,,{\fad(120,120)}and points to exactly that block.
+Dialogue: 1,0:02:38.84,0:02:54.28,Chip,,0,0,0,,{\fad(250,200)}5 · Tamper-evident audit ledger
+Dialogue: 0,0:02:54.68,0:02:56.56,Caption,,0,0,0,,{\fad(120,120)}Supervisors tune the limits
+Dialogue: 0,0:02:56.56,0:02:57.99,Caption,,0,0,0,,{\fad(120,120)}with the autonomy dial,
+Dialogue: 0,0:02:57.99,0:03:00.47,Caption,,0,0,0,,{\fad(120,120)}but never past the hard safety caps.
+Dialogue: 0,0:03:00.47,0:03:01.66,Caption,,0,0,0,,{\fad(120,120)}Before committing,
+Dialogue: 0,0:03:01.66,0:03:04.15,Caption,,0,0,0,,{\fad(120,120)}the simulator replays past cases
+Dialogue: 0,0:03:04.15,0:03:05.39,Caption,,0,0,0,,{\fad(120,120)}under the new limits,
+Dialogue: 0,0:03:05.39,0:03:07.24,Caption,,0,0,0,,{\fad(120,120)}without calling the model again.
+Dialogue: 0,0:03:07.24,0:03:09.71,Caption,,0,0,0,,{\fad(120,120)}Lowering the limit to 200 rupees sends
+Dialogue: 0,0:03:09.71,0:03:12.31,Caption,,0,0,0,,{\fad(120,120)}one more case to a supervisor.
+Dialogue: 1,0:02:54.33,0:03:12.82,Chip,,0,0,0,,{\fad(250,200)}6 · The autonomy dial
+Dialogue: 0,0:03:13.21,0:03:16.42,Caption,,0,0,0,,{\fad(120,120)}And the eval suite runs 29 cases:
+Dialogue: 0,0:03:16.42,0:03:18.61,Caption,,0,0,0,,{\fad(120,120)}tier boundaries, velocity caps,
+Dialogue: 0,0:03:18.61,0:03:21.49,Caption,,0,0,0,,{\fad(120,120)}UPI edge cases and attacks.
+Dialogue: 0,0:03:21.49,0:03:22.95,Caption,,0,0,0,,{\fad(120,120)}All 29 pass,
+Dialogue: 0,0:03:22.95,0:03:25.18,Caption,,0,0,0,,{\fad(120,120)}with zero unsafe actions.
+Dialogue: 1,0:03:12.87,0:03:25.69,Chip,,0,0,0,,{\fad(250,200)}7 · Safety evals
+Dialogue: 0,0:03:26.06,0:03:27.00,Caption,,0,0,0,,{\fad(120,120)}Under the hood,
+Dialogue: 0,0:03:27.00,0:03:29.03,Caption,,0,0,0,,{\fad(120,120)}a React and TypeScript front end
+Dialogue: 0,0:03:29.03,0:03:31.53,Caption,,0,0,0,,{\fad(120,120)}talks to a FastAPI back end.
+Dialogue: 0,0:03:31.53,0:03:33.90,Caption,,0,0,0,,{\fad(120,120)}The orchestrator asks a pluggable LLM
+Dialogue: 0,0:03:33.90,0:03:35.54,Caption,,0,0,0,,{\fad(120,120)}adapter for the next step.
+Dialogue: 0,0:03:35.54,0:03:36.84,Caption,,0,0,0,,{\fad(120,120)}In this demo it runs
+Dialogue: 0,0:03:36.84,0:03:38.66,Caption,,0,0,0,,{\fad(120,120)}the built-in offline engine,
+Dialogue: 0,0:03:38.66,0:03:40.64,Caption,,0,0,0,,{\fad(120,120)}so no API keys are needed.
+Dialogue: 0,0:03:40.64,0:03:42.89,Caption,,0,0,0,,{\fad(120,120)}Every proposed tool call goes
+Dialogue: 0,0:03:42.89,0:03:44.29,Caption,,0,0,0,,{\fad(120,120)}to the policy engine,
+Dialogue: 0,0:03:44.29,0:03:46.50,Caption,,0,0,0,,{\fad(120,120)}which loads its rules from a YAML file.
+Dialogue: 0,0:03:46.50,0:03:48.39,Caption,,0,0,0,,{\fad(120,120)}Allowed calls reach mock Paytm
+Dialogue: 0,0:03:48.39,0:03:50.78,Caption,,0,0,0,,{\fad(120,120)}services backed by SQLite,
+Dialogue: 0,0:03:50.78,0:03:52.01,Caption,,0,0,0,,{\fad(120,120)}and every step streams to
+Dialogue: 0,0:03:52.01,0:03:54.67,Caption,,0,0,0,,{\fad(120,120)}the supervisor over server-sent events.
+Dialogue: 0,0:03:55.56,0:03:58.18,Caption,,0,0,0,,{\fad(120,120)}The engine returns one of four verdicts.
+Dialogue: 0,0:03:58.18,0:03:59.60,Caption,,0,0,0,,{\fad(120,120)}Under 500 rupees,
+Dialogue: 0,0:03:59.60,0:04:01.97,Caption,,0,0,0,,{\fad(120,120)}allow. Up to 5,000,
+Dialogue: 0,0:04:01.97,0:04:04.15,Caption,,0,0,0,,{\fad(120,120)}a supervisor must approve.
+Dialogue: 0,0:04:04.15,0:04:07.11,Caption,,0,0,0,,{\fad(120,120)}Above that, escalate to a specialist.
+Dialogue: 0,0:04:07.11,0:04:08.50,Caption,,0,0,0,,{\fad(120,120)}And a duplicate refund,
+Dialogue: 0,0:04:08.50,0:04:10.12,Caption,,0,0,0,,{\fad(120,120)}or someone else's order,
+Dialogue: 0,0:04:10.12,0:04:11.60,Caption,,0,0,0,,{\fad(120,120)}is denied outright.
+Dialogue: 0,0:04:11.60,0:04:14.35,Caption,,0,0,0,,{\fad(120,120)}The model never picks the tier. Code does.
+Dialogue: 0,0:04:15.22,0:04:17.38,Caption,,0,0,0,,{\fad(120,120)}Each audit block records who acted,
+Dialogue: 0,0:04:17.38,0:04:18.28,Caption,,0,0,0,,{\fad(120,120)}what they did,
+Dialogue: 0,0:04:18.28,0:04:19.66,Caption,,0,0,0,,{\fad(120,120)}and which rule applied,
+Dialogue: 0,0:04:19.66,0:04:21.79,Caption,,0,0,0,,{\fad(120,120)}plus the hash of the block before it,
+Dialogue: 0,0:04:21.79,0:04:25.07,Caption,,0,0,0,,{\fad(120,120)}all hashed with SHA-256.
+Dialogue: 0,0:04:25.07,0:04:26.61,Caption,,0,0,0,,{\fad(120,120)}Change a single field,
+Dialogue: 0,0:04:26.61,0:04:29.12,Caption,,0,0,0,,{\fad(120,120)}and that block's hash no longer matches.
+Dialogue: 0,0:04:29.12,0:04:31.09,Caption,,0,0,0,,{\fad(120,120)}Verification walks the chain from the
+Dialogue: 0,0:04:31.09,0:04:33.13,Caption,,0,0,0,,{\fad(120,120)}genesis block to the tip.
+Dialogue: 0,0:04:34.03,0:04:36.71,Caption,,0,0,0,,{\fad(120,120)}Sakshi. The AI proposes,
+Dialogue: 0,0:04:36.71,0:04:39.63,Caption,,0,0,0,,{\fad(120,120)}code verifies, and the ledger remembers.
+Dialogue: 0,0:04:39.63,0:04:41.77,Caption,,0,0,0,,{\fad(120,120)}Built by Team XLR8:
+Dialogue: 0,0:04:41.77,0:04:44.57,Caption,,0,0,0,,{\fad(120,120)}Siddhant Shukla and Raunak Kumar Gupta.
