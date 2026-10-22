@@ -33,9 +33,9 @@ h1 { font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 72px
 .card span.tag { display: inline-block; margin-top: 0; font-size: 20px; line-height: normal; color: var(--ink); }
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity .5s ease, transform .6s cubic-bezier(.2,.8,.2,1); }
 .reveal.on { opacity: 1; transform: none; }
-.slam { opacity: 0; transform: translate(-10px, -10px); box-shadow: 0 0 0 var(--ink) !important;
+.card.slam, .box.slam { opacity: 0; transform: translate(-10px, -10px); box-shadow: 0 0 0 var(--ink);
   transition: opacity .25s ease, transform .35s cubic-bezier(.3,1.4,.5,1), box-shadow .35s cubic-bezier(.3,1.4,.5,1); }
-.slam.on { opacity: 1; transform: none; box-shadow: 8px 8px 0 var(--ink) !important; }
+.card.slam.on, .box.slam.on { opacity: 1; transform: none; box-shadow: 8px 8px 0 var(--ink); }
 .fade { opacity: 0; transition: opacity .5s ease; }
 .fade.on { opacity: 1; }
 
@@ -187,7 +187,8 @@ svg.wires .lbl.g { fill: #0E8A5A; }
   <div class="box slam" data-s="5" style="left: 1480px; top: 518px; width: 300px; height: 140px"><b>Approval queue</b><span>handoff packets for humans</span></div>
   <div class="box slam" data-s="5" style="left: 1150px; top: 728px; width: 630px; height: 112px; background: var(--ink); color: #fff"><b>SHA-256 audit ledger</b><span style="color: var(--mint)">hash-chained · verify_chain()</span></div>
 
-  <svg class="wires" viewBox="0 0 1920 1080">
+  <svg class="wires" viewBox="0 0 1920 1080" role="img" aria-label="Arrows: the frontend calls the FastAPI gateway; the orchestrator sends proposed tool calls to the policy engine, which routes them to the mock services or the approval queue, both recorded in the audit ledger; trace events stream back to the frontend over SSE">
+    <title>How requests flow through Sakshi</title>
     <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0D0D0D" stroke="none"/></marker>
       <marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#12A36B" stroke="none"/></marker></defs>
     <g class="fade" data-s="1"><path d="M526 328 H652" marker-end="url(#ah)"/><text class="lbl" x="548" y="314">REST</text></g>
@@ -262,7 +263,7 @@ svg.wires .lbl.g { fill: #0E8A5A; }
   </div>
 </section>
 
-<script>
+<script type="module">
 let sec, step = 0;
 const extra = {
   t3_chain: {
@@ -285,8 +286,9 @@ function show(n) {
   sec.querySelectorAll(`[data-s="${n}"]`).forEach(e => e.classList.add("on"));
   (extra[sec.id] || {})[n]?.();
 }
-function start() { step = 0; show(0); }
-function cue() { step += 1; show(step); }
+// record.py drives the slide by calling these from the page
+window.start = () => { step = 0; show(0); };
+window.cue = () => { step += 1; show(step); };
 
 async function sha(text) {
   const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
@@ -295,16 +297,17 @@ async function sha(text) {
 async function fillHashes() {
   const payloads = ["0|SYSTEM|GENESIS_BLOCK|SYSTEM-INIT", "1|POLICY_ENGINE|ALLOW|499|R-TIER-01,R-REF-01",
                     "2|AGENT|issue_refund|ORD-901|499|R-TIER-01", "3|SUPERVISOR|APPROVE|ORD-902|1499|SUPERVISOR-AUTH"];
-  let prev = "0".repeat(64);
-  for (let i = 0; i < payloads.length; i++) {
-    prev = await sha(`${payloads[i]}|${prev}`);
-    document.querySelectorAll(`.hx[data-b="${i}"]`).forEach(e => e.textContent = prev.slice(0, 16) + "…");
-  }
+  // each block's hash covers the previous block's hash, so they are computed one after another
+  await payloads.reduce(async (previous, payload, i) => {
+    const hash = await sha(`${payload}|${await previous}`);
+    document.querySelectorAll(`.hx[data-b="${i}"]`).forEach(e => e.textContent = hash.slice(0, 16) + "…");
+    return hash;
+  }, Promise.resolve("0".repeat(64)));
 }
 
 sec = document.getElementById(location.hash.slice(1) || "p1_problem");
 sec.classList.add("active");
-fillHashes();
+await fillHashes();
 </script>
 </body>
 </html>

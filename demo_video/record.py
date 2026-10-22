@@ -326,8 +326,17 @@ async def capture(page, sid, act):
     await asyncio.sleep(0.2)
     await cdp.detach()
 
-    # frames arrive only when the screen changes: hold each one until the next, starting at the clock's zero
-    t0, t_end = clock.t0, clock.t0 + length
+    usable = await asyncio.to_thread(encode, sid, frames, clock.t0, length)
+    shutil.rmtree(frames_dir, ignore_errors=True)
+    print(f"{sid:12s} {length:5.1f} s  {usable} frames ({usable / length:.0f}/s captured) -> {sid}.mp4")
+
+
+def encode(sid, frames, t0, length):
+    """Turn the captured frames into clips/<sid>.mp4, exactly length seconds long; return how many were used.
+
+    Frames arrive only when the screen changes, so each one is held until the next, starting at the clock's zero.
+    """
+    t_end = t0 + length
     usable = [(max(ts, t0), path) for ts, path in frames if ts < t_end]
     before = [f for f in usable if f[0] == t0]
     usable = before[-1:] + [f for f in usable if f[0] > t0]
@@ -337,12 +346,10 @@ async def capture(page, sid, act):
     listing.append(f"file '{usable[-1][1].as_posix()}'")
     concat = CLIPS / f"{sid}.txt"
     concat.write_text("\n".join(listing) + "\n", encoding="utf8")
-    out = CLIPS / f"{sid}.mp4"
     subprocess.run([FFMPEG, "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", str(concat),
                     "-vf", f"scale={W}:{H}:flags=lanczos,fps=30,format=yuv420p", "-t", f"{length:.3f}",
-                    "-c:v", "libx264", "-crf", "16", "-preset", "medium", str(out)], check=True)
-    shutil.rmtree(frames_dir, ignore_errors=True)
-    print(f"{sid:12s} {length:5.1f} s  {len(usable)} frames ({len(usable) / length:.0f}/s captured) -> {out.name}")
+                    "-c:v", "libx264", "-crf", "16", "-preset", "medium", str(CLIPS / f"{sid}.mp4")], check=True)
+    return len(usable)
 
 
 async def record_slide(browser, scene):

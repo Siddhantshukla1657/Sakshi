@@ -25,13 +25,14 @@ def stamp(t, srt=False):
     return f"{int(h)}:{int(m):02d}:{s:05.2f}"
 
 
-def captions_for(scene, offset):
-    """Group the voice's words into short caption lines, restoring the script's punctuation."""
-    data = json.loads((HERE / "audio" / f"{scene['id']}.json").read_text(encoding="utf8"))
-    tokens = scene["say"].split()
-    norm = lambda w: re.sub(r"[^a-z0-9]", "", w.lower())  # noqa: E731
+def norm(w):
+    return re.sub(r"[^a-z0-9]", "", w.lower())
+
+
+def align(spoken, tokens):
+    """Pair each spoken word with the script token it came from, so captions keep the script's punctuation."""
     words, j = [], 0
-    for w in data["words"]:
+    for w in spoken:
         target = norm(w["text"])
         # one spoken word covering several script tokens ("in 2033,")
         acc, m = "", j
@@ -53,7 +54,15 @@ def captions_for(scene, offset):
             continue
         words.append({"shown": shown, "start": w["start"], "end": w["end"]})
         j += 1
-    # split at punctuation first (clauses), then wrap long clauses into balanced lines of up to ~42 characters
+    return words
+
+
+def text_of(line):
+    return " ".join(x["shown"] for x in line)
+
+
+def wrap(words):
+    """Split at punctuation first (clauses), then wrap long clauses into balanced lines of up to ~42 characters."""
     clauses, cur = [], []
     for w in words:
         cur.append(w)
@@ -64,35 +73,43 @@ def captions_for(scene, offset):
         clauses.append(cur)
     lines = []
     for clause in clauses:
-        text_len = len(" ".join(x["shown"] for x in clause))
-        parts = max(1, -(-text_len // 42))
+        parts = max(1, -(-len(text_of(clause)) // 42))
         size = -(-len(clause) // parts)
         lines += [clause[k:k + size] for k in range(0, len(clause), size)]
-    # join a short one- or two-word line to its neighbour when the result still fits on one line
-    forward = []
+    return lines
+
+
+def join_short(lines):
+    """Join a short one- or two-word line to its neighbour when the result still fits on one line."""
+    forward, held = [], None
     for k, line in enumerate(lines):
-        if forward and forward[-1] is None:
-            forward[-1] = prev_short + line
+        if held is not None:
+            forward.append(held + line)
+            held = None
             continue
         nxt = lines[k + 1] if k + 1 < len(lines) else None
-        if len(line) <= 2 and nxt and len(" ".join(x["shown"] for x in line + nxt)) <= 46:
-            prev_short = line
-            forward.append(None)
+        if len(line) <= 2 and nxt and len(text_of(line + nxt)) <= 46:
+            held = line
         else:
             forward.append(line)
-    lines = forward
     merged = []
-    for line in lines:
-        if merged and len(line) <= 2 and len(" ".join(x["shown"] for x in merged[-1] + line)) <= 46:
+    for line in forward:
+        if merged and len(line) <= 2 and len(text_of(merged[-1] + line)) <= 46:
             merged[-1] = merged[-1] + line
         else:
             merged.append(line)
-    lines = merged
+    return merged
+
+
+def captions_for(scene, offset):
+    """The scene's caption lines as (start, end, text), timed to the voice."""
+    data = json.loads((HERE / "audio" / f"{scene['id']}.json").read_text(encoding="utf8"))
+    lines = join_short(wrap(align(data["words"], scene["say"].split())))
     out = []
     for i, line in enumerate(lines):
         start = offset + line[0]["start"]
         nxt = offset + lines[i + 1][0]["start"] if i + 1 < len(lines) else offset + line[-1]["end"] + .35
-        out.append((start, min(nxt, offset + line[-1]["end"] + .6), " ".join(w["shown"] for w in line)))
+        out.append((start, min(nxt, offset + line[-1]["end"] + .6), text_of(line)))
     return out
 
 
@@ -174,4 +191,5 @@ def main():
     print(f"{final.name}: {total:.1f} s, {final.stat().st_size / 1e6:.1f} MB; also {clean.name} and {NAME}.srt")
 
 
-main()
+if __name__ == "__main__":
+    main()
