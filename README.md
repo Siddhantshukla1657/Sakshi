@@ -2,6 +2,8 @@
 
 > **"The first AI support agent designed to be audited, not just to be smart."**
 
+🎬 **Demo video:** [watch on YouTube](https://youtu.be/uOjglE-VGdg) · files in [`demo_video/`](demo_video/)
+
 Sakshi (Hindi for *"witness"*) is an agentic customer and merchant support system built for high-volume, money-sensitive fintech and digital commerce platforms (e.g. UPI, QR Soundbox, wallets). 
 
 Unlike standard conversational chatbots that merely output text or unconstrained autonomous agents that pose catastrophic financial leakage risks, Sakshi operates on a strict **propose, verify, execute** principle: **the LLM proposes actions, a deterministic code-level Policy Engine verifies every financial movement against written governance rules, and an immutable, SHA-256 hash-chained cryptographic ledger records every decision.**

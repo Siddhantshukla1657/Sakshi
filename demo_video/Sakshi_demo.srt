@@ -1,0 +1,547 @@
+1
+00:00:00,584 --> 00:00:03,312
+Every day, payment apps like Paytm handle
+
+2
+00:00:03,312 --> 00:00:05,296
+millions of support requests.
+
+3
+00:00:05,296 --> 00:00:06,846
+A UPI payment that failed,
+
+4
+00:00:06,846 --> 00:00:08,493
+but still left the bank.
+
+5
+00:00:08,493 --> 00:00:10,163
+A refund for a broken order.
+
+6
+00:00:10,163 --> 00:00:12,543
+A merchant settlement that came up short.
+
+7
+00:00:12,543 --> 00:00:14,106
+Chatbots can only talk,
+
+8
+00:00:14,106 --> 00:00:15,500
+so tickets pile up.
+
+9
+00:00:15,500 --> 00:00:17,892
+But an AI agent that can move money
+
+10
+00:00:17,892 --> 00:00:19,744
+can also be talked into moving it.
+
+11
+00:00:20,632 --> 00:00:23,120
+Meet Sakshi, Hindi for witness:
+
+12
+00:00:23,120 --> 00:00:25,560
+a support agent designed to be audited,
+
+13
+00:00:25,560 --> 00:00:26,882
+not just smart.
+
+14
+00:00:26,882 --> 00:00:29,034
+The AI proposes an action.
+
+15
+00:00:29,034 --> 00:00:30,344
+A policy engine,
+
+16
+00:00:30,344 --> 00:00:31,690
+written in plain code,
+
+17
+00:00:31,690 --> 00:00:34,995
+verifies it. Only then does the action run,
+
+18
+00:00:34,995 --> 00:00:36,666
+and every step is sealed
+
+19
+00:00:36,666 --> 00:00:38,578
+in a hash-chained audit ledger.
+
+20
+00:00:39,480 --> 00:00:41,295
+Here is the live stage.
+
+21
+00:00:41,295 --> 00:00:43,795
+Riya's tote bag arrived broken,
+
+22
+00:00:43,795 --> 00:00:46,812
+so she asks for a 499 rupee refund.
+
+23
+00:00:46,812 --> 00:00:47,533
+On the right,
+
+24
+00:00:47,533 --> 00:00:49,396
+supervisors watch the agent's
+
+25
+00:00:49,396 --> 00:00:50,646
+reasoning stream in.
+
+26
+00:00:50,646 --> 00:00:51,511
+It checks the order,
+
+27
+00:00:51,511 --> 00:00:53,182
+proposes a refund,
+
+28
+00:00:53,182 --> 00:00:54,793
+and the policy engine allows it,
+
+29
+00:00:54,793 --> 00:00:56,692
+because 499 is under the
+
+30
+00:00:56,692 --> 00:00:58,891
+500 rupee autonomy limit.
+
+31
+00:00:58,891 --> 00:01:00,117
+Riya gets a receipt,
+
+32
+00:01:00,117 --> 00:01:02,018
+with a ten-minute undo window.
+
+33
+00:01:02,912 --> 00:01:04,246
+Anyone can ask why.
+
+34
+00:01:04,246 --> 00:01:05,568
+The answer is built only
+
+35
+00:01:05,568 --> 00:01:06,794
+from the audit record:
+
+36
+00:01:06,794 --> 00:01:08,044
+the rules it cited,
+
+37
+00:01:08,044 --> 00:01:09,451
+its confidence score,
+
+38
+00:01:09,451 --> 00:01:12,876
+and the block's SHA-256 hash,
+
+39
+00:01:12,876 --> 00:01:14,945
+linked to the hash of the block before it.
+
+40
+00:01:15,844 --> 00:01:18,320
+Next, Riya writes in Hinglish.
+
+41
+00:01:18,320 --> 00:01:20,099
+Her UPI payment failed,
+
+42
+00:01:20,099 --> 00:01:23,440
+but 499 rupees still left her bank.
+
+43
+00:01:23,440 --> 00:01:25,207
+Sakshi replies in Hinglish,
+
+44
+00:01:25,207 --> 00:01:27,106
+sees the payment is inside
+
+45
+00:01:27,106 --> 00:01:29,823
+the 48-hour auto-reversal window,
+
+46
+00:01:29,823 --> 00:01:32,168
+and shows her exactly where the money is.
+
+47
+00:01:33,060 --> 00:01:34,671
+Now a bigger ask:
+
+48
+00:01:34,671 --> 00:01:38,577
+earbuds worth 1,499 rupees.
+
+49
+00:01:38,577 --> 00:01:40,296
+That is above the agent's limit,
+
+50
+00:01:40,296 --> 00:01:41,498
+and over the daily cap
+
+51
+00:01:41,498 --> 00:01:43,998
+of 1,000 rupees per customer.
+
+52
+00:01:43,998 --> 00:01:45,861
+So the agent cannot pay out.
+
+53
+00:01:45,861 --> 00:01:48,156
+It sends the case to a supervisor,
+
+54
+00:01:48,156 --> 00:01:49,382
+and tells Riya she will
+
+55
+00:01:49,382 --> 00:01:51,307
+not have to repeat herself.
+
+56
+00:01:52,220 --> 00:01:54,588
+The supervisor gets a handoff packet:
+
+57
+00:01:54,588 --> 00:01:56,090
+the order, the amount,
+
+58
+00:01:56,090 --> 00:01:57,785
+today's refund total,
+
+59
+00:01:57,785 --> 00:01:58,831
+a trust score,
+
+60
+00:01:58,831 --> 00:02:00,453
+and a suggested next step.
+
+61
+00:02:00,453 --> 00:02:01,691
+One click approves it.
+
+62
+00:02:01,691 --> 00:02:03,218
+The refund runs,
+
+63
+00:02:03,218 --> 00:02:04,576
+and the approval is recorded
+
+64
+00:02:04,576 --> 00:02:06,140
+under the supervisor's name.
+
+65
+00:02:07,024 --> 00:02:08,106
+Now an attack.
+
+66
+00:02:08,106 --> 00:02:10,341
+Someone claims to be Paytm's CEO,
+
+67
+00:02:10,341 --> 00:02:12,986
+and orders a 6,000 rupee refund.
+
+68
+00:02:12,986 --> 00:02:14,861
+The language model can be fooled,
+
+69
+00:02:14,861 --> 00:02:17,120
+but the policy engine cannot.
+
+70
+00:02:17,120 --> 00:02:20,498
+6,000 is above the 5,000 rupee ceiling,
+
+71
+00:02:20,498 --> 00:02:22,349
+so the refund is blocked,
+
+72
+00:02:22,349 --> 00:02:24,381
+and handed to a human specialist.
+
+73
+00:02:25,284 --> 00:02:25,981
+Attack Mode has a
+
+74
+00:02:25,981 --> 00:02:28,145
+library of scripted attacks:
+
+75
+00:02:28,145 --> 00:02:30,392
+prompt injection, fake authority,
+
+76
+00:02:30,392 --> 00:02:32,436
+sob stories, jailbreaks,
+
+77
+00:02:32,436 --> 00:02:34,851
+forged tokens and limit smuggling.
+
+78
+00:02:34,851 --> 00:02:36,438
+Each one hits the same wall.
+
+79
+00:02:36,438 --> 00:02:38,302
+No prompt can talk its way around code.
+
+80
+00:02:39,176 --> 00:02:42,217
+Every proposal, verdict and approval lands
+
+81
+00:02:42,217 --> 00:02:43,299
+in the audit chain.
+
+82
+00:02:43,299 --> 00:02:46,111
+Verify it, and every hash checks out.
+
+83
+00:02:46,111 --> 00:02:48,275
+Now we tamper with the latest record,
+
+84
+00:02:48,275 --> 00:02:50,426
+directly in the database.
+
+85
+00:02:50,426 --> 00:02:51,856
+The check fails at once,
+
+86
+00:02:51,856 --> 00:02:53,769
+and points to exactly that block.
+
+87
+00:02:54,676 --> 00:02:56,563
+Supervisors tune the limits
+
+88
+00:02:56,563 --> 00:02:57,993
+with the autonomy dial,
+
+89
+00:02:57,993 --> 00:03:00,469
+but never past the hard safety caps.
+
+90
+00:03:00,469 --> 00:03:01,659
+Before committing,
+
+91
+00:03:01,659 --> 00:03:04,147
+the simulator replays past cases
+
+92
+00:03:04,147 --> 00:03:05,385
+under the new limits,
+
+93
+00:03:05,385 --> 00:03:07,236
+without calling the model again.
+
+94
+00:03:07,236 --> 00:03:09,712
+Lowering the limit to 200 rupees sends
+
+95
+00:03:09,712 --> 00:03:12,310
+one more case to a supervisor.
+
+96
+00:03:13,212 --> 00:03:16,421
+And the eval suite runs 29 cases:
+
+97
+00:03:16,421 --> 00:03:18,609
+tier boundaries, velocity caps,
+
+98
+00:03:18,609 --> 00:03:21,493
+UPI edge cases and attacks.
+
+99
+00:03:21,493 --> 00:03:22,948
+All 29 pass,
+
+100
+00:03:22,948 --> 00:03:25,185
+with zero unsafe actions.
+
+101
+00:03:26,060 --> 00:03:26,998
+Under the hood,
+
+102
+00:03:26,998 --> 00:03:29,029
+a React and TypeScript front end
+
+103
+00:03:29,029 --> 00:03:31,529
+talks to a FastAPI back end.
+
+104
+00:03:31,529 --> 00:03:33,897
+The orchestrator asks a pluggable LLM
+
+105
+00:03:33,897 --> 00:03:35,543
+adapter for the next step.
+
+106
+00:03:35,543 --> 00:03:36,841
+In this demo it runs
+
+107
+00:03:36,841 --> 00:03:38,656
+the built-in offline engine,
+
+108
+00:03:38,656 --> 00:03:40,639
+so no API keys are needed.
+
+109
+00:03:40,639 --> 00:03:42,887
+Every proposed tool call goes
+
+110
+00:03:42,887 --> 00:03:44,293
+to the policy engine,
+
+111
+00:03:44,293 --> 00:03:46,505
+which loads its rules from a YAML file.
+
+112
+00:03:46,505 --> 00:03:48,392
+Allowed calls reach mock Paytm
+
+113
+00:03:48,392 --> 00:03:50,784
+services backed by SQLite,
+
+114
+00:03:50,784 --> 00:03:52,010
+and every step streams to
+
+115
+00:03:52,010 --> 00:03:54,667
+the supervisor over server-sent events.
+
+116
+00:03:55,564 --> 00:03:58,184
+The engine returns one of four verdicts.
+
+117
+00:03:58,184 --> 00:03:59,603
+Under 500 rupees,
+
+118
+00:03:59,603 --> 00:04:01,970
+allow. Up to 5,000,
+
+119
+00:04:01,970 --> 00:04:04,146
+a supervisor must approve.
+
+120
+00:04:04,146 --> 00:04:07,115
+Above that, escalate to a specialist.
+
+121
+00:04:07,115 --> 00:04:08,497
+And a duplicate refund,
+
+122
+00:04:08,497 --> 00:04:10,119
+or someone else's order,
+
+123
+00:04:10,119 --> 00:04:11,598
+is denied outright.
+
+124
+00:04:11,598 --> 00:04:14,352
+The model never picks the tier. Code does.
+
+125
+00:04:15,216 --> 00:04:17,380
+Each audit block records who acted,
+
+126
+00:04:17,380 --> 00:04:18,281
+what they did,
+
+127
+00:04:18,281 --> 00:04:19,663
+and which rule applied,
+
+128
+00:04:19,663 --> 00:04:21,791
+plus the hash of the block before it,
+
+129
+00:04:21,791 --> 00:04:25,072
+all hashed with SHA-256.
+
+130
+00:04:25,072 --> 00:04:26,610
+Change a single field,
+
+131
+00:04:26,610 --> 00:04:29,122
+and that block's hash no longer matches.
+
+132
+00:04:29,122 --> 00:04:31,094
+Verification walks the chain from the
+
+133
+00:04:31,094 --> 00:04:33,126
+genesis block to the tip.
+
+134
+00:04:34,028 --> 00:04:36,708
+Sakshi. The AI proposes,
+
+135
+00:04:36,708 --> 00:04:39,629
+code verifies, and the ledger remembers.
+
+136
+00:04:39,629 --> 00:04:41,769
+Built by Team XLR8:
+
+137
+00:04:41,769 --> 00:04:44,570
+Siddhant Shukla and Raunak Kumar Gupta.

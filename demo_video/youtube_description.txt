@@ -1,0 +1,23 @@
+Sakshi (साक्षी, Hindi for "witness") is an AI support agent for payments that is designed to be audited, not just smart. The AI proposes an action, a deterministic policy engine written in code verifies it, and only then does money move. Every step is sealed in a SHA-256 hash-chained audit ledger. Team XLR8: Siddhant Shukla and Raunak Kumar Gupta, Paytm hackathon.
+
+The demo walks one customer through a small refund the agent resolves on its own, a failed UPI payment handled in Hinglish, a mid-value return that a supervisor approves, and a prompt-injection attack that the policy engine blocks. It then shows Attack Mode, a tamper test on the audit ledger, the autonomy dial with its counterfactual simulator, and the 29-case safety eval suite (29 of 29 pass, zero unsafe actions).
+
+0:00 The problem
+0:20 Sakshi: propose, verify, execute, seal
+0:38 1 · A small refund, resolved by the agent
+1:02 Why did the agent do that?
+1:15 2 · A failed UPI payment, in Hinglish
+1:32 3 · Above the limit: a supervisor decides
+1:51 The supervisor approval cockpit
+2:06 4 · A prompt-injection attack
+2:24 Attack Mode
+2:38 5 · The tamper-evident audit ledger
+2:54 6 · The autonomy dial
+3:12 7 · Safety evals
+3:25 How it works: architecture
+3:54 The policy engine
+4:14 The audit chain
+4:33 Wrap-up
+
+Built with React, TypeScript, Vite, FastAPI and SQLite.
+Code: https://github.com/Siddhantshukla1657/Sakshi

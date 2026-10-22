@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sakshi · demo slides</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..800&family=JetBrains+Mono:wght@500;700;800&family=Space+Grotesk:wght@500;600;700&family=Noto+Sans+Devanagari:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FBF7EC; --ink: #0D0D0D; --muted: #4A4A4A; --agent: #4C8DFF; --mint: #3DDC97; --warning: #FFC233;
+  --danger: #FF5A5F; --navy: #002E6E; --purple: #C9A7FF; --line: #E4DCC6;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--cream); color: var(--ink);
+  font-family: "DM Sans", sans-serif; }
+body::before { content: ""; position: fixed; inset: 0; pointer-events: none;
+  background-image: linear-gradient(rgba(13,13,13,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(13,13,13,.045) 1px, transparent 1px);
+  background-size: 48px 48px; }
+section { position: absolute; inset: 0; padding: 104px 140px 0; display: none; }
+section.active { display: block; }
+.kicker { display: inline-flex; align-items: center; gap: 12px; font-family: "JetBrains Mono", monospace; font-weight: 800;
+  font-size: 22px; letter-spacing: .12em; text-transform: uppercase; }
+.kicker::before { content: ""; width: 16px; height: 16px; background: var(--mint); border: 3px solid var(--ink); }
+h1 { font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 72px; line-height: 1.04; letter-spacing: -0.02em;
+  margin-top: 14px; max-width: 1400px; }
+.mono { font-family: "JetBrains Mono", monospace; }
+.card { position: absolute; background: #fff; border: 3px solid var(--ink); border-radius: 14px; box-shadow: 8px 8px 0 var(--ink);
+  padding: 26px 30px; }
+.tag { display: inline-block; font-family: "JetBrains Mono", monospace; font-weight: 800; font-size: 20px; padding: 5px 12px;
+  border: 2px solid var(--ink); border-radius: 6px; box-shadow: 2px 2px 0 var(--ink); }
+.card b { display: block; font-family: "Space Grotesk", sans-serif; font-size: 36px; line-height: 1.12; margin-top: 18px; }
+.card span { display: block; font-size: 25px; line-height: 1.35; color: var(--muted); margin-top: 12px; }
+.card span.tag { display: inline-block; margin-top: 0; font-size: 20px; line-height: normal; color: var(--ink); }
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .5s ease, transform .6s cubic-bezier(.2,.8,.2,1); }
+.reveal.on { opacity: 1; transform: none; }
+.slam { opacity: 0; transform: translate(-10px, -10px); box-shadow: 0 0 0 var(--ink) !important;
+  transition: opacity .25s ease, transform .35s cubic-bezier(.3,1.4,.5,1), box-shadow .35s cubic-bezier(.3,1.4,.5,1); }
+.slam.on { opacity: 1; transform: none; box-shadow: 8px 8px 0 var(--ink) !important; }
+.fade { opacity: 0; transition: opacity .5s ease; }
+.fade.on { opacity: 1; }
+
+/* p1 */
+.p1row { position: absolute; left: 140px; right: 140px; display: grid; gap: 40px; }
+.p1row .card { position: relative; }
+
+/* p2 */
+.brand { display: flex; align-items: center; gap: 30px; margin-top: 26px; }
+.logo { background: var(--mint); border: 4px solid var(--ink); box-shadow: 8px 8px 0 var(--ink); padding: 16px 26px 10px;
+  font-family: "Noto Sans Devanagari", sans-serif; font-weight: 800; font-size: 96px; line-height: 1.15; display: flex; align-items: center; gap: 20px; }
+.logo small { font-family: "JetBrains Mono", monospace; font-size: 34px; background: var(--ink); color: var(--mint); padding: 6px 14px; border-radius: 6px; }
+.brand .what { font-family: "Space Grotesk", sans-serif; font-size: 44px; font-weight: 700; }
+.brand .what em { display: block; font-style: normal; font-family: "JetBrains Mono", monospace; font-size: 26px; color: var(--muted); margin-top: 8px; }
+.pipe { position: absolute; left: 140px; right: 140px; top: 500px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 56px; }
+.pipe .card { position: relative; min-height: 300px; }
+.pipe .card .code { margin-top: 18px; font-family: "JetBrains Mono", monospace; font-size: 20px; background: var(--cream);
+  border: 2px solid var(--ink); border-radius: 6px; padding: 10px 12px; color: var(--ink); }
+.pipe .card:not(:last-child)::after { content: "→"; position: absolute; right: -50px; top: 116px; font-size: 44px; font-weight: 800; }
+.pipe .dark { background: var(--ink); color: #fff; }
+.pipe .dark span { color: #B9C2BC; }
+.pipe .dark .code { background: #1a1a1a; color: var(--mint); border-color: #333; }
+
+/* t1 architecture */
+.box { position: absolute; background: #fff; border: 3px solid var(--ink); border-radius: 12px; box-shadow: 6px 6px 0 var(--ink); padding: 18px 22px; }
+.box b { display: block; font-family: "Space Grotesk", sans-serif; font-size: 30px; line-height: 1.1; }
+.box span { display: block; font-family: "JetBrains Mono", monospace; font-size: 19px; color: var(--muted); margin-top: 8px; }
+.box ul { list-style: none; margin-top: 18px; display: grid; gap: 11px; }
+.box li { font-size: 23px; font-weight: 600; padding: 8px 12px; border: 2px solid var(--ink); border-radius: 6px; background: var(--cream); }
+.chips { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+.chips .tag { font-size: 17px; padding: 4px 9px; }
+svg.wires { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; pointer-events: none; }
+svg.wires path { fill: none; stroke: var(--ink); stroke-width: 4; }
+svg.wires marker path { stroke: none; fill: #0D0D0D; }
+svg.wires #ag path { fill: #12A36B; }
+svg.wires .lbl { font-family: "JetBrains Mono", monospace; font-size: 18px; font-weight: 800; fill: var(--ink); }
+svg.wires .sse { stroke: #12A36B; stroke-dasharray: 12 8; }
+svg.wires .lbl.g { fill: #0E8A5A; }
+.badge { position: absolute; font-family: "JetBrains Mono", monospace; font-weight: 800; font-size: 19px; background: var(--mint);
+  border: 3px solid var(--ink); border-radius: 8px; box-shadow: 4px 4px 0 var(--ink); padding: 8px 14px; }
+
+/* t2 policy */
+.tiers { position: absolute; left: 140px; right: 140px; top: 330px; display: grid; grid-template-columns: 420px 1fr 560px; gap: 30px; }
+.tiers .card { position: relative; min-height: 236px; }
+.amt { font-family: "JetBrains Mono", monospace; font-weight: 800; font-size: 26px; }
+.verdict { display: inline-block; margin-top: 16px; font-family: "JetBrains Mono", monospace; font-weight: 800; font-size: 24px;
+  padding: 6px 14px; border: 3px solid var(--ink); border-radius: 8px; }
+.tiers .card b { font-size: 32px; }
+.rule { font-family: "JetBrains Mono", monospace; font-size: 19px; color: var(--muted); margin-top: 10px; }
+
+/* t3 chain */
+.blocks { position: absolute; left: 140px; right: 140px; top: 320px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 60px; }
+.blk { position: relative; background: #fff; border: 3px solid var(--ink); border-radius: 12px; box-shadow: 6px 6px 0 var(--ink);
+  padding: 18px 20px; transition: border-color .4s, background .4s; }
+.blk:not(:last-child)::after { content: "→"; position: absolute; right: -50px; top: 150px; font-size: 40px; font-weight: 800; }
+.blk h3 { font-family: "JetBrains Mono", monospace; font-size: 22px; font-weight: 800; display: flex; justify-content: space-between; }
+.blk h3 i { font-style: normal; background: var(--ink); color: #fff; padding: 2px 10px; border-radius: 5px; }
+.fld { font-family: "JetBrains Mono", monospace; font-size: 19px; margin-top: 12px; line-height: 1.3; }
+.fld em { display: block; font-style: normal; font-size: 15px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+.fld.h { background: var(--cream); border: 2px solid var(--ink); border-radius: 6px; padding: 6px 9px; transition: background .4s, color .4s; }
+.fld.h.hash { background: #E8F7EF; }
+.blk.bad { border-color: var(--danger); background: #FFF1F1; }
+.fld.h.badhash { background: var(--danger); color: #fff; }
+.fld.h.badhash em { color: #fff; }
+.strike { text-decoration: line-through; color: var(--muted); }
+.red { color: #D62F35; font-weight: 800; }
+.mark { position: absolute; top: -32px; left: calc(50% - 27px); width: 54px; height: 54px; border-radius: 50%; border: 3px solid var(--ink);
+  display: grid; place-items: center; font-size: 30px; font-weight: 800; opacity: 0; transform: scale(.5);
+  transition: opacity .25s, transform .35s cubic-bezier(.3,1.6,.5,1); }
+.mark.on { opacity: 1; transform: none; }
+.mark.ok { background: var(--mint); } .mark.no { background: var(--danger); color: #fff; }
+.verdictbar { position: absolute; left: 140px; right: 140px; top: 772px; border: 3px solid var(--ink); border-radius: 12px;
+  box-shadow: 6px 6px 0 var(--ink); padding: 20px 26px; font-family: "JetBrains Mono", monospace; font-weight: 800; font-size: 26px;
+  background: var(--danger); color: #fff; }
+
+/* e1 end */
+#e1_end { display: none; padding: 0; }
+#e1_end.active { display: grid; place-items: center; }
+.endwrap { text-align: center; display: grid; justify-items: center; gap: 34px; margin-top: -80px; }
+.lines { display: flex; gap: 26px; }
+.lines .card { position: relative; padding: 18px 28px; }
+.lines .card b { margin: 0; font-size: 40px; }
+.people { display: flex; gap: 18px; align-items: center; font-size: 28px; font-weight: 700; }
+.pill { background: #fff; border: 3px solid var(--ink); border-radius: 999px; padding: 12px 26px; box-shadow: 4px 4px 0 var(--ink); }
+.pill.dark { background: var(--ink); color: #fff; }
+.repo { font-family: "JetBrains Mono", monospace; font-size: 24px; color: var(--muted); }
+.repo b { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ problem -->
+<section id="p1_problem">
+  <div class="kicker reveal" data-s="0">The problem</div>
+  <h1 class="reveal" data-s="0">Fintech support tickets move real money.</h1>
+  <div class="p1row" style="top: 320px; grid-template-columns: repeat(3, 1fr);">
+    <div class="card slam" data-s="1"><span class="tag" style="background: var(--agent); color: #fff">UPI</span>
+      <b>Payment failed, money debited</b><span>₹499 left the bank. The merchant never got it.</span></div>
+    <div class="card slam" data-s="2"><span class="tag" style="background: var(--warning)">REFUND</span>
+      <b>Order arrived broken</b><span>Every refund is money leaving the platform.</span></div>
+    <div class="card slam" data-s="3"><span class="tag" style="background: var(--mint)">MERCHANT</span>
+      <b>Settlement came up short</b><span>A QR Soundbox shop is ₹2,000 down.</span></div>
+  </div>
+  <div class="p1row" style="top: 660px; grid-template-columns: 1fr 1.25fr;">
+    <div class="card slam" data-s="4"><b style="margin-top: 0">Chatbots only talk</b><span>So the tickets pile up for human agents.</span></div>
+    <div class="card slam" data-s="5" style="background: var(--danger); color: #fff"><b style="margin-top: 0">AI agents can be talked into paying</b>
+      <span style="color: #fff">Prompt injection, fake authority, sob stories.</span></div>
+  </div>
+</section>
+
+<!-- ============================================================ solution -->
+<section id="p2_solution">
+  <div class="kicker reveal" data-s="0">The solution</div>
+  <div class="brand reveal" data-s="0">
+    <div class="logo">साक्षी <small>SAKSHI</small></div>
+    <div class="what">Hindi for “witness”<em>Designed to be audited, not just smart.</em></div>
+  </div>
+  <div class="pipe">
+    <div class="card slam" data-s="1"><span class="tag" style="background: var(--agent); color: #fff">1 · PROPOSE</span>
+      <b>The AI proposes an action</b><div class="code">issue_refund(ORD-901, ₹499)</div></div>
+    <div class="card slam" data-s="2"><span class="tag" style="background: var(--warning)">2 · VERIFY</span>
+      <b>Plain code checks every rule</b><div class="code">rules.yaml → ALLOW</div></div>
+    <div class="card slam" data-s="3"><span class="tag" style="background: var(--mint)">3 · EXECUTE</span>
+      <b>Only then does money move</b><div class="code">₹499 refunded · undo 10 min</div></div>
+    <div class="card slam dark" data-s="4"><span class="tag" style="background: var(--mint); color: var(--ink)">4 · SEAL</span>
+      <b>Every step is hash-chained</b><div class="code">SHA-256(prev ‖ block)</div></div>
+  </div>
+</section>
+
+<!-- ============================================================ architecture -->
+<section id="t1_arch">
+  <div class="kicker reveal" data-s="0">How it works · architecture</div>
+  <h1 class="reveal" data-s="0" style="font-size: 60px">One gate between the model and the money</h1>
+
+  <div class="box slam" data-s="1" style="left: 140px; top: 270px; width: 380px; height: 570px">
+    <b>Frontend</b><span>React · TypeScript · Vite</span>
+    <ul><li>Customer chat</li><li>Live reasoning trace</li><li>Approvals cockpit</li><li>Audit ledger</li><li>Autonomy dial</li><li>Evals · Attack Mode</li></ul>
+  </div>
+  <div class="box slam" data-s="1" style="left: 660px; top: 270px; width: 360px; height: 116px"><b>FastAPI gateway</b><span>REST + SSE · :8000</span></div>
+  <div class="box slam" data-s="2" style="left: 660px; top: 466px; width: 360px; height: 116px"><b>Agent orchestrator</b><span>confidence · trace events</span></div>
+  <div class="box slam" data-s="2" style="left: 660px; top: 662px; width: 360px; height: 178px"><b>LLM adapter</b><span>pluggable · proposes the next tool call</span></div>
+  <div class="badge reveal" data-s="3" style="left: 676px; top: 784px">Offline engine · no API keys</div>
+
+  <div class="box slam" data-s="4" style="left: 1150px; top: 270px; width: 630px; height: 168px; background: #FFF6DA">
+    <b>Deterministic policy engine</b><span>rules.yaml · tiers · daily caps · ownership</span>
+    <div class="chips"><span class="tag" style="background: var(--mint)">ALLOW</span><span class="tag" style="background: var(--warning)">NEEDS_APPROVAL</span><span class="tag" style="background: var(--purple)">ESCALATE</span><span class="tag" style="background: var(--danger); color: #fff">DENY</span></div>
+  </div>
+  <div class="box slam" data-s="5" style="left: 1150px; top: 518px; width: 300px; height: 140px"><b>Mock Paytm services</b><span>orders · UPI · SQLite</span></div>
+  <div class="box slam" data-s="5" style="left: 1480px; top: 518px; width: 300px; height: 140px"><b>Approval queue</b><span>handoff packets for humans</span></div>
+  <div class="box slam" data-s="5" style="left: 1150px; top: 728px; width: 630px; height: 112px; background: var(--ink); color: #fff"><b>SHA-256 audit ledger</b><span style="color: var(--mint)">hash-chained · verify_chain()</span></div>
+
+  <svg class="wires" viewBox="0 0 1920 1080">
+    <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0D0D0D" stroke="none"/></marker>
+      <marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#12A36B" stroke="none"/></marker></defs>
+    <g class="fade" data-s="1"><path d="M526 328 H652" marker-end="url(#ah)"/><text class="lbl" x="548" y="314">REST</text></g>
+    <g class="fade" data-s="2"><path d="M840 392 V458" marker-end="url(#ah)"/><path d="M840 590 V654" marker-start="url(#ah)" marker-end="url(#ah)"/></g>
+    <g class="fade" data-s="4"><path d="M1026 524 H1086 V354 H1142" marker-end="url(#ah)"/><text class="lbl" x="1040" y="604">proposed</text><text class="lbl" x="1040" y="626">tool call</text></g>
+    <g class="fade" data-s="5"><path d="M1300 444 V510" marker-end="url(#ah)"/><text class="lbl" x="1312" y="484">ALLOW</text>
+      <path d="M1630 444 V510" marker-end="url(#ah)"/><text class="lbl" x="1642" y="484">APPROVE / ESCALATE</text>
+      <path d="M1300 664 V720" marker-end="url(#ah)"/><path d="M1630 664 V720" marker-end="url(#ah)"/></g>
+    <g class="fade" data-s="6"><path class="sse" d="M654 552 H532" marker-end="url(#ag)"/><text class="lbl g" x="540" y="610">SSE</text><text class="lbl g" x="540" y="632">trace</text></g>
+  </svg>
+</section>
+
+<!-- ============================================================ policy -->
+<section id="t2_policy">
+  <div class="kicker reveal" data-s="0">How it works · policy engine</div>
+  <h1 class="reveal" data-s="0">Four verdicts, decided in code</h1>
+  <div class="tiers">
+    <div class="card slam" data-s="1" style="background: #E6FAF0"><div class="amt">under ₹500</div><b>The agent resolves it</b>
+      <div class="verdict" style="background: var(--mint)">ALLOW</div><div class="rule">R-TIER-01</div></div>
+    <div class="card slam" data-s="2" style="background: #FFF6DA"><div class="amt">₹500 – ₹5,000</div><b>A supervisor signs off</b>
+      <div class="verdict" style="background: var(--warning)">NEEDS_APPROVAL</div><div class="rule">R-TIER-02 · also when a customer passes ₹1,000 a day (R-CAP-01)</div></div>
+    <div class="card slam" data-s="3" style="background: #F3EBFF"><div class="amt">over ₹5,000</div><b>Only a human specialist</b>
+      <div class="verdict" style="background: var(--purple)">ESCALATE</div><div class="rule">R-TIER-03</div></div>
+  </div>
+  <div class="card slam" data-s="4" style="left: 140px; top: 636px; width: 790px; height: 190px; background: #FFE9EA">
+    <div class="verdict" style="background: var(--danger); color: #fff; margin-top: 0">DENY</div>
+    <b style="margin-top: 14px; font-size: 32px">Duplicate refund · someone else's order</b><div class="rule">R-DUP-01 · R-OWN-01 · any amount</div></div>
+  <div class="card slam" data-s="5" style="left: 990px; top: 636px; width: 790px; height: 190px; background: var(--ink); color: #fff">
+    <b style="margin-top: 6px; font-size: 40px">The model never picks the tier.<br><span style="display: inline; font-size: 40px; color: var(--mint)">Code does.</span></b></div>
+</section>
+
+<!-- ============================================================ chain -->
+<section id="t3_chain">
+  <div class="kicker reveal" data-s="0">How it works · audit chain</div>
+  <h1 class="reveal" data-s="0">Every decision, hash-chained</h1>
+  <div class="blocks">
+    <div class="blk reveal" data-s="0" id="b0"><div class="mark" id="m0"></div><h3><i>BLOCK #0</i>GENESIS</h3>
+      <div class="fld fade" data-s="1"><em>actor · action</em>SYSTEM · GENESIS_BLOCK</div>
+      <div class="fld fade" data-s="1"><em>rule</em>SYSTEM-INIT</div>
+      <div class="fld h fade" data-s="2"><em>prev hash</em>0000000000000000…</div>
+      <div class="fld h hash"><em>sha-256</em><span class="hx" data-b="0"></span></div></div>
+    <div class="blk reveal" data-s="0" id="b1"><div class="mark" id="m1"></div><h3><i>BLOCK #1</i>VERDICT</h3>
+      <div class="fld fade" data-s="1"><em>actor · action</em>POLICY · ALLOW ₹499</div>
+      <div class="fld fade" data-s="1"><em>rule</em>R-TIER-01, R-REF-01</div>
+      <div class="fld h fade" data-s="2"><em>prev hash</em><span class="hx" data-b="0"></span></div>
+      <div class="fld h hash"><em>sha-256</em><span class="hx" data-b="1"></span></div></div>
+    <div class="blk reveal" data-s="0" id="b2"><div class="mark" id="m2"></div><h3><i>BLOCK #2</i>REFUND</h3>
+      <div class="fld fade" data-s="1"><em>actor · action</em>AGENT · refund <span id="amt">₹499</span></div>
+      <div class="fld fade" data-s="1"><em>rule</em>R-TIER-01</div>
+      <div class="fld h fade" data-s="2"><em>prev hash</em><span class="hx" data-b="1"></span></div>
+      <div class="fld h hash" id="h2"><em>sha-256</em><span class="hx" data-b="2"></span></div></div>
+    <div class="blk reveal" data-s="0" id="b3"><div class="mark" id="m3"></div><h3><i>BLOCK #3</i>APPROVAL</h3>
+      <div class="fld fade" data-s="1"><em>actor · action</em>SUPERVISOR · ₹1,499</div>
+      <div class="fld fade" data-s="1"><em>rule</em>SUPERVISOR-AUTH</div>
+      <div class="fld h fade" data-s="2"><em>prev hash</em><span class="hx" data-b="2"></span></div>
+      <div class="fld h hash"><em>sha-256</em><span class="hx" data-b="3"></span></div></div>
+  </div>
+  <div class="verdictbar fade" id="vbar">✗ Tampering detected at block #2: recomputed SHA-256 does not match</div>
+</section>
+
+<!-- ============================================================ end -->
+<section id="e1_end">
+  <div class="endwrap">
+    <div class="logo reveal" data-s="0">साक्षी <small>SAKSHI</small></div>
+    <div class="lines">
+      <div class="card slam" data-s="1" style="background: var(--agent); color: #fff"><b>The AI proposes.</b></div>
+      <div class="card slam" data-s="2" style="background: var(--warning)"><b>Code verifies.</b></div>
+      <div class="card slam" data-s="3" style="background: var(--ink); color: var(--mint)"><b>The ledger remembers.</b></div>
+    </div>
+    <div class="people reveal" data-s="4"><span class="pill dark">Team XLR8</span><span class="pill">Siddhant Shukla</span><span class="pill">Raunak Kumar Gupta</span></div>
+    <div class="repo reveal" data-s="4">github.com/<b>Siddhantshukla1657/Sakshi</b></div>
+  </div>
+</section>
+
+<script>
+let sec, step = 0;
+const extra = {
+  t3_chain: {
+    3: () => {  // tamper with block #2: its stored hash no longer matches
+      document.getElementById("amt").innerHTML = '<span class="strike">₹499</span> <span class="red">₹4,990</span>';
+      document.getElementById("b2").classList.add("bad");
+      document.getElementById("h2").classList.add("badhash");
+    },
+    4: () => {  // verification walks from genesis to the tip
+      [["m0", "ok"], ["m1", "ok"], ["m2", "no"]].forEach(([id, k], i) => setTimeout(() => {
+        const m = document.getElementById(id);
+        m.classList.add(k, "on");
+        m.textContent = k === "ok" ? "✓" : "✗";
+        if (k === "no") document.getElementById("vbar").classList.add("on");
+      }, 450 * i));
+    },
+  },
+};
+function show(n) {
+  sec.querySelectorAll(`[data-s="${n}"]`).forEach(e => e.classList.add("on"));
+  (extra[sec.id] || {})[n]?.();
+}
+function start() { step = 0; show(0); }
+function cue() { step += 1; show(step); }
+
+async function sha(text) {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+  return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, "0")).join("");
+}
+async function fillHashes() {
+  const payloads = ["0|SYSTEM|GENESIS_BLOCK|SYSTEM-INIT", "1|POLICY_ENGINE|ALLOW|499|R-TIER-01,R-REF-01",
+                    "2|AGENT|issue_refund|ORD-901|499|R-TIER-01", "3|SUPERVISOR|APPROVE|ORD-902|1499|SUPERVISOR-AUTH"];
+  let prev = "0".repeat(64);
+  for (let i = 0; i < payloads.length; i++) {
+    prev = await sha(`${payloads[i]}|${prev}`);
+    document.querySelectorAll(`.hx[data-b="${i}"]`).forEach(e => e.textContent = prev.slice(0, 16) + "…");
+  }
+}
+
+sec = document.getElementById(location.hash.slice(1) || "p1_problem");
+sec.classList.add("active");
+fillHashes();
+</script>
+</body>
+</html>
