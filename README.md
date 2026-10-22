@@ -2,7 +2,9 @@
 
 > **"The first AI support agent designed to be audited, not just to be smart."**
 
-🎬 **Demo video:** [watch on YouTube](https://youtu.be/uOjglE-VGdg) · files in [`demo_video/`](demo_video/)
+[![Watch the Sakshi demo on YouTube](https://img.youtube.com/vi/uOjglE-VGdg/maxresdefault.jpg)](https://youtu.be/uOjglE-VGdg)
+
+🎬 **Demo video (4 min 48 s):** [watch on YouTube](https://youtu.be/uOjglE-VGdg) · video files, captions and the script that generates them are in [`demo_video/`](demo_video/)
 
 Sakshi (Hindi for *"witness"*) is an agentic customer and merchant support system built for high-volume, money-sensitive fintech and digital commerce platforms (e.g. UPI, QR Soundbox, wallets). 
 
@@ -14,6 +16,25 @@ Unlike standard conversational chatbots that merely output text or unconstrained
 
 - **Siddhant Shukla** — GitHub: [@Siddhantshukla1657](https://github.com/Siddhantshukla1657)
 - **Raunak Kumar Gupta** — GitHub: [@raunakg2005](https://github.com/raunakg2005)
+
+---
+
+## 📸 Screenshots
+
+One customer, Riya, walks through the platform. All data is seeded test data.
+
+| | |
+|:---:|:---:|
+| ![Autonomous refund with live reasoning trace](docs/screenshots/01_autonomous_refund.png) | ![Why did Sakshi take this action?](docs/screenshots/02_why_explainer.png) |
+| **Autonomous refund (< ₹500).** The agent resolves it; the supervisor trace shows the policy verdict `ALLOW` (R-TIER-01). | **"Why?" explainer.** Built only from the audit record: rules cited, confidence, and the block's SHA-256 hash. |
+| ![Failed UPI payment handled in Hinglish](docs/screenshots/03_upi_hinglish.png) | ![Supervisor approval cockpit](docs/screenshots/04_supervisor_approval.png) |
+| **UPI debited but failed, in Hinglish.** Inside the 48-hour reversal window, with a status timeline. | **Supervisor approval (₹1,499).** A handoff packet with evidence and a suggested next step. |
+| ![Prompt-injection attack blocked](docs/screenshots/05_attack_blocked.png) | ![Adversarial attack playground](docs/screenshots/06_attack_mode.png) |
+| **"I am the CEO of Paytm" attack.** The policy engine escalates the ₹6,000 refund (R-TIER-03); no money moves. | **Attack Mode.** Scripted prompt injections, fake authority, sob stories and jailbreaks, all blocked. |
+| ![Audit chain verified](docs/screenshots/07_audit_ledger.png) | ![Tampering detected](docs/screenshots/08_tamper_detected.png) |
+| **Tamper-evident ledger.** Every proposal, verdict and approval is hash-chained and verified. | **Tamper simulation.** Editing one record in the database breaks the chain at exactly that block. |
+| ![Autonomy dial and policy simulator](docs/screenshots/09_autonomy_dial.png) | ![Eval scoreboard](docs/screenshots/10_eval_scoreboard.png) |
+| **Autonomy dial.** Tune limits within hard safety caps; the simulator replays past cases first. | **Eval scoreboard.** 29 of 29 cases pass with zero unsafe actions. |
 
 ---
 
@@ -344,7 +365,9 @@ Sakshi/
 │           ├── AttackModePanel.tsx  # 10+ adversarial attack testbed
 │           └── DemoSwitcher.tsx     # Preset scenario switcher & failure injection
 │
+├── demo_video/                 # Demo video, captions, script, and the pipeline that generates them
 ├── docs/                       # Architecture, PRD, design, and feature specifications
+│   └── screenshots/            # README screenshots (regenerate with demo_video/screenshots.py)
 ├── docker-compose.yml          # Containerized multi-service deployment
 ├── install.bat                 # 1-Click dependency installer for Windows
 ├── run.bat                     # 1-Click launcher for Backend + Frontend + Browser
@@ -398,6 +421,9 @@ npm install
 npm run dev -- --host 127.0.0.1 --port 5173
 ```
 *Frontend will be live at `http://127.0.0.1:5173/`.*
+
+> **Live trace shows OFFLINE?** The Vite dev proxy can hold back the SSE trace stream. Point the frontend straight at the backend instead:
+> `VITE_API_BASE=http://127.0.0.1:8000 npm run dev -- --host 127.0.0.1 --port 5173` (PowerShell: `$env:VITE_API_BASE="http://127.0.0.1:8000"; npm run dev -- --host 127.0.0.1 --port 5173`).
 
 ---
 
