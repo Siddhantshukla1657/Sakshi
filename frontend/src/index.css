@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: #FBF7EC;
+  --color-surface: #FFFFFF;
+  --color-ink: #0D0D0D;
+  --color-primary: #4C8DFF;
+  --color-accent: #3DDC97;
+  --color-warning: #FFC233;
+  --color-error: #FF5A5F;
+  --color-human: #002E6E;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: 'DM Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Neo-Brutalist Core Utilities */
+.border-ink-3 {
+  border: 3px solid #0D0D0D;
+}
+
+.border-ink-2 {
+  border: 2px solid #0D0D0D;
+}
+
+.shadow-brutal {
+  box-shadow: 4px 4px 0 #0D0D0D;
+}
+
+.shadow-brutal-lg {
+  box-shadow: 8px 8px 0 #0D0D0D;
+}
+
+.shadow-brutal-sm {
+  box-shadow: 2px 2px 0 #0D0D0D;
+}
+
+/* Button Physical Press Motion */
+.btn-press {
+  transition: transform 100ms cubic-bezier(0.2, 0, 0, 1), box-shadow 100ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.btn-press:active {
+  transform: translate(4px, 4px) !important;
+  box-shadow: 0 0 0 #0D0D0D !important;
+}
+
+/* Trace Slam Animation (Feature 5 / Design 7.3) */
+@keyframes traceSlam {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-slam {
+  animation: traceSlam 140ms cubic-bezier(0.2, 0, 0, 1) forwards;
+}
+
+/* Blocked Shake */
+@keyframes blockedShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+.animate-shake {
+  animation: blockedShake 140ms ease-in-out;
+}
+
+/* Custom Scrollbars for Terminal */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111111;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333333;
+  border: 1px solid #0D0D0D;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4C8DFF;
+}
