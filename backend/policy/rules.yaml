@@ -1,0 +1,107 @@
+version: "1.0.0"
+last_updated: "2026-10-22"
+metadata:
+  description: "Deterministic Policy Rules for Sakshi Autonomy, Verification, and Safety"
+  author: "Sakshi Governance Engine"
+
+tiers:
+  auto_resolve_max: 500        # Tier 1: under ₹500 auto-resolve if rules pass
+  supervisor_approval_max: 5000 # Tier 2: ₹500 to ₹5,000 requires supervisor approval
+  hard_ceiling_auto: 1000      # Safety cap: Dial cannot raise Tier 1 above ₹1,000
+  hard_ceiling_approval: 10000 # Safety cap: Dial cannot raise Tier 2 above ₹10,000
+
+limits:
+  daily_refund_cap_per_customer: 1000  # Cumulative daily limit before flagging
+  max_refund_window_days: 7            # Orders older than 7 days require human review
+  undo_window_minutes: 10              # Supervisor can undo refund within 10 min
+  upi_reversal_window_hours: 48        # Standard T+2 (48 hrs) auto-reversal window
+
+rules:
+  - id: "R-REF-01"
+    name: "Refund Window Validation"
+    category: "eligibility"
+    description: "Orders must be delivered or placed within the 7-day refund window."
+    condition: "order_age_days <= max_refund_window_days"
+    failure_action: "NEEDS_APPROVAL"
+    failure_reason: "Order is older than the policy window (7 days). Supervisor discretion required."
+
+  - id: "R-DUP-01"
+    name: "Duplicate Refund Prevention"
+    category: "integrity"
+    description: "An order or payment that has already been refunded cannot be refunded again."
+    condition: "target_status != 'REFUNDED' and target_status != 'REFUND_PENDING'"
+    failure_action: "DENY"
+    failure_reason: "This transaction or order has already been refunded or has a pending refund."
+
+  - id: "R-OWN-01"
+    name: "Customer Ownership Verification"
+    category: "security"
+    description: "The order or payment customer ID must strictly match the session customer ID."
+    condition: "target_customer_id == session_customer_id"
+    failure_action: "DENY"
+    failure_reason: "Account ownership mismatch. You can only request actions for your own account."
+
+  - id: "R-TIER-01"
+    name: "Tier 1 Autonomy Boundary (< ₹500)"
+    category: "autonomy"
+    description: "Amounts below ₹500 can be autonomously approved if all integrity checks pass."
+    condition: "amount < auto_resolve_max"
+    success_action: "ALLOW"
+    failure_action: "NEXT_TIER"
+
+  - id: "R-TIER-02"
+    name: "Tier 2 Supervisor Approval (₹500 - ₹5,000)"
+    category: "autonomy"
+    description: "Amounts between ₹500 and ₹5,000 require explicit supervisor sign-off."
+    condition: "amount <= supervisor_approval_max"
+    failure_action: "NEEDS_APPROVAL"
+    failure_reason: "Amount ₹{amount} exceeds Tier 1 autonomous limit. Sent to supervisor approval queue."
+
+  - id: "R-TIER-03"
+    name: "Tier 3 Mandatory Human Escalation (> ₹5,000)"
+    category: "autonomy"
+    description: "Amounts above ₹5,000 are strictly beyond agent authority and require human specialist."
+    condition: "amount > supervisor_approval_max"
+    failure_action: "ESCALATE"
+    failure_reason: "High-value transaction (₹{amount}) exceeds supervisor ceiling (₹{supervisor_approval_max}). Escalated to senior payments specialist."
+
+  - id: "R-CAP-01"
+    name: "Customer Daily Cumulative Cap"
+    category: "fraud_prevention"
+    description: "Customer daily refund total plus requested amount must not exceed ₹1,000 without supervisor review."
+    condition: "(customer_daily_total + amount) <= daily_refund_cap_per_customer"
+    failure_action: "NEEDS_APPROVAL"
+    failure_reason: "Customer daily refund velocity limit exceeded (₹{customer_daily_total} already refunded today). Supervisor review needed."
+
+  - id: "R-MIS-01"
+    name: "Claim vs History Mismatch"
+    category: "verification"
+    description: "If customer claims item was not received but logistics shows confirmed signed delivery, require approval."
+    condition: "claim_mismatch == false"
+    failure_action: "NEEDS_APPROVAL"
+    failure_reason: "Delivery tracking records indicate signed delivery. Human supervisor verification required."
+
+  - id: "R-UPI-01"
+    name: "UPI Failed Transaction Auto-Reversal Window"
+    category: "upi"
+    description: "If UPI payment failed/debited within 48h, inform customer of automatic banking reversal timeline."
+    condition: "upi_status == 'FAILED_DEBITED' and elapsed_hours <= upi_reversal_window_hours"
+    success_action: "ALLOW"
+    failure_action: "NEEDS_APPROVAL"
+    failure_reason: "UPI transaction exceeded 48 hours auto-reversal window. Raising manual bank reversal ticket."
+
+  - id: "R-UPI-02"
+    name: "UPI Success Merchant Route"
+    category: "upi"
+    description: "If UPI transaction succeeded on NPCI rails, cannot issue UPI failure reversal; route to order return/merchant dispute."
+    condition: "upi_status != 'SUCCESS'"
+    failure_action: "DENY"
+    failure_reason: "UPI transaction was successfully settled with the merchant. File an order return or merchant dispute."
+
+  - id: "R-MER-01"
+    name: "Merchant Settlement Dispute Ceiling"
+    category: "merchant"
+    description: "Merchant settlement discrepancies under ₹2,000 can be auto-reconciled; up to ₹20,000 requires supervisor."
+    condition: "merchant_dispute_amount <= 2000"
+    failure_action: "NEEDS_APPROVAL"
+    failure_reason: "Merchant settlement dispute exceeds autonomous reconciliation limit."
